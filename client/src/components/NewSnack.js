@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
 const NewSnack = () => {
@@ -8,23 +8,7 @@ const NewSnack = () => {
         price: 0.0,
         rating: 0
     })
-
-    const [content, setContent] = useState('');
-    const [user, setUser] = useState({});
-    const [loading, setLoading] = useState(true);
-
     const history = useHistory();
-
-    const loadUser = async () => {
-        const resp = await fetch('http://localhost:3001/users/1');
-        const data = await resp.json();
-        setUser(data);
-        setLoading(false);
-    }
-
-    useEffect(() => {
-        loadUser();
-    }, [])
 
     const handleChange = e => {
         setState({
@@ -36,22 +20,17 @@ const NewSnack = () => {
     const handleSubmit = e => {
         e.preventDefault();
 
-        fetch('http://localhost:3001/snacks', {
+        fetch('/snacks', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             },
-            body: JSON.stringify({
-                ...state,
-                reviews_attributes: [
-                    {
-                        content,
-                        user_id: user.id
-                    }
-                ]
-            })
+            body: JSON.stringify(state)
         })
+        .then(resp => resp.json())
+        .then(data => setState(data))
+        history.push('/snacks')
     }
 
     return (

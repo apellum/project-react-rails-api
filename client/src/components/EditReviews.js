@@ -20,7 +20,7 @@ const EditReviews = () => {
             })
         }
         getReview()
-    }, [])
+    }, [review_id])
 
     const handleChange = e => {
         setEditForm({
@@ -38,6 +38,7 @@ const EditReviews = () => {
             body: JSON.stringify({...editForm})
         })
         const data = await resp.json()
+        console.log(data)
         history.push(`/snacks/${id}`)
     }
 

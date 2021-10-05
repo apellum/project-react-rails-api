@@ -41,6 +41,7 @@ export const logout = async (e, logoutCurrentUser) => {
     })
 
     const data = await resp.json();
+    console.log(data)
 
     logoutCurrentUser();
 }

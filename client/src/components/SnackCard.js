@@ -2,7 +2,6 @@ import React, { useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
 import ListReviews from './ListReviews'
 import NewReview from './NewReview'
-// import { Link } from 'react-router-dom'
 
 const SnackCard = ({currentUser}) => {
     const { id } = useParams();
@@ -10,25 +9,32 @@ const SnackCard = ({currentUser}) => {
     const [reviews, setReviews] = useState({});
     const [loading, setLoading] = useState(true);
 
-    const loadSnacks = async () => {
-        const resp = await fetch(`http://localhost:3001/snacks/${id}`)
-        const data = await resp.json();
-        setSnack(data);
-        setReviews(data.reviews);
-    }
+    // const loadSnack = async () => {
+    //     const resp = await fetch(`http://localhost:3001/snacks/${id}`)
+    //     const data = await resp.json();
+    //     setSnack(data);
+    //     setReviews(data.reviews);
+    // }
 
     const addReview = (review) => {
         setReviews([...reviews, review])
     }
 
     useEffect(() => {
-        load();
+        const loadSnack = async () => {
+            const resp = await fetch(`/snacks/${id}`)
+            const data = await resp.json();
+            setSnack(data);
+            setReviews(data.reviews);
+            setLoading(false);
+        }
+        loadSnack();
     }, [id])
 
-    const load = async () => {
-        await loadSnacks();
-        setLoading(false)
-    }
+    // const load = async () => {
+    //     await loadSnack();
+    //     setLoading(false);
+    // }
 
     if (loading) return <h1>loading</h1>
 

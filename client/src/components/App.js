@@ -31,7 +31,10 @@ function App() {
 
   useEffect(() => {
     getCurrentUser(handleCurrentUser)
+    setLoading(false)
   }, [])
+
+  if (loading) return <h1>loading</h1>
 
   return (
     <Router>
@@ -39,10 +42,10 @@ function App() {
       <NavBar loggedIn={loggedIn} logoutCurrentUser={logoutCurrentUser}/>
       <Switch>
         <div className="App">
+          {/* <Route exact path="/snacks/new" render={(props) => <NewSnack {...props} />}/> */}
           <Route exact path="/snacks" render={(props) => <ListSnacks {...props} />}/>
           <Route exact path="/snacks/:id" render={(props) => <SnackCard {...props} currentUser={currentUser} />}/>
-          <Route exact path="/snacks/:id/reviews/:review_id"> <EditReviews currentUser={currentUser} /></Route>
-          <Route exact path="/snacks/new" render={(props) => <NewSnack {...props} />}/>
+          <Route exact path="/snacks/:id/reviews/:review_id" render={(props) => <EditReviews {...props} currentUser={currentUser} />}/>
           <Route exact path="/signup" render={props => <Signup {...props} handleCurrentUser={handleCurrentUser}/>}/>
           <Route exact path="/login" render={props => <Login {...props} handleCurrentUser={handleCurrentUser}/>}/>
         </div>
