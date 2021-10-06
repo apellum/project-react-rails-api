@@ -11,7 +11,7 @@ class SnacksController < ApplicationController
   # GET /snacks/1
   def show
     @snack = find_snack
-    render json: @snack, include: [:reviews]
+    render json: @snack, include: [:reviews => :user]
   end
 
   # POST /snacks

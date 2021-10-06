@@ -1,16 +1,17 @@
 class ReviewsController < ApplicationController
+  # use before action to run that there is a review for it to run
   before_action :set_review, only: [:show, :update, :destroy]
 
   # GET /reviews
   def index
     @reviews = Review.all
 
-    render json: @reviews
+    render json: @reviews, include: [:user]
   end
 
   # GET /reviews/1
   def show
-    render json: @review
+    render json: @review, include: [:user]
   end
 
   # POST /reviews

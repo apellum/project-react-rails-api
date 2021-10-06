@@ -10,7 +10,6 @@ const NavBar = ({loggedIn, logoutCurrentUser}) => {
                 <li><NavLink to="/">Home</NavLink></li>
                 <li><NavLink to="/logout" onClick={ (e) => logout(e, logoutCurrentUser) }>Logout</NavLink></li>
                 <li><NavLink to="/snacks">Snacks</NavLink></li>
-                {/* <li><NavLink to="/snacks/new">Add a Snack</NavLink></li> */}
             </ul>
         )
     }
@@ -21,7 +20,6 @@ const NavBar = ({loggedIn, logoutCurrentUser}) => {
                 <li><NavLink to="/signup">Create Account</NavLink></li>
                 <li><NavLink to="/login">Login</NavLink></li>
                 <li><NavLink to="/snacks">Snacks</NavLink></li>
-                {/* <li><NavLink to="/snacks/new">Add a Snack</NavLink></li> */}
             </ul>
         </div>
     )

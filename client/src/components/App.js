@@ -6,14 +6,15 @@ import Home from "./Home";
 import Login from "./Login";
 import Signup from "./Signup";
 import ListSnacks from "./ListSnacks";
-import NewSnack from "./NewSnack";
 import SnackCard from "./SnackCard";
 import EditReviews from "./EditReviews";
+import { useHistory } from 'react-router'
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
   const [loggedIn, setLoggedIn] = useState(false)
   const [loading, setLoading] = useState(true)
+  const history = useHistory();
 
   const handleCurrentUser = (user) => {
     if (user.username) {
@@ -27,6 +28,7 @@ function App() {
     setCurrentUser(null);
     setLoggedIn(false);
     setLoading(false);
+
   }
 
   useEffect(() => {
@@ -42,7 +44,6 @@ function App() {
       <NavBar loggedIn={loggedIn} logoutCurrentUser={logoutCurrentUser}/>
       <Switch>
         <div className="App">
-          {/* <Route exact path="/snacks/new" render={(props) => <NewSnack {...props} />}/> */}
           <Route exact path="/snacks" render={(props) => <ListSnacks {...props} />}/>
           <Route exact path="/snacks/:id" render={(props) => <SnackCard {...props} currentUser={currentUser} />}/>
           <Route exact path="/snacks/:id/reviews/:review_id" render={(props) => <EditReviews {...props} currentUser={currentUser} />}/>
