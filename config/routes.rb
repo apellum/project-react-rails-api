@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   resources :reviews
-  resources :snacks, only: [:index, :show, :create] do 
+  resources :snacks, only: [:index, :show] do 
     resources :reviews
   end
   # resources :users

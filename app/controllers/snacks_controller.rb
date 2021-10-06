@@ -1,5 +1,5 @@
 class SnacksController < ApplicationController
-  before_action :set_snack, only: [:show, :update, :destroy]
+  before_action :set_snack, only: [:show]
 
   # GET /snacks
   def index
@@ -14,30 +14,30 @@ class SnacksController < ApplicationController
     render json: @snack, include: [:reviews => :user]
   end
 
-  # POST /snacks
-  def create
-    @snack = Snack.new(snack_params)
+  # # POST /snacks
+  # def create
+  #   @snack = Snack.new(snack_params)
 
-    if @snack.save
-      render json: @snack, status: :created, location: @snack
-    else
-      render json: @snack.errors, status: :unprocessable_entity
-    end
-  end
+  #   if @snack.save
+  #     render json: @snack, status: :created, location: @snack
+  #   else
+  #     render json: @snack.errors, status: :unprocessable_entity
+  #   end
+  # end
 
-  # PATCH/PUT /snacks/1
-  def update
-    if @snack.update(snack_params)
-      render json: @snack
-    else
-      render json: @snack.errors, status: :unprocessable_entity
-    end
-  end
+  # # PATCH/PUT /snacks/1
+  # def update
+  #   if @snack.update(snack_params)
+  #     render json: @snack
+  #   else
+  #     render json: @snack.errors, status: :unprocessable_entity
+  #   end
+  # end
 
-  # DELETE /snacks/1
-  def destroy
-    @snack.destroy
-  end
+  # # DELETE /snacks/1
+  # def destroy
+  #   @snack.destroy
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
