@@ -4,13 +4,11 @@ class SnacksController < ApplicationController
   # GET /snacks
   def index
     @snacks = Snack.all
-
     render json: @snacks
   end
 
   # GET /snacks/1
   def show
-    @snack = find_snack
     render json: @snack, include: [:reviews => :user]
   end
 
@@ -45,12 +43,12 @@ class SnacksController < ApplicationController
       @snack = Snack.find_by(id: params[:id])
     end
 
-    def find_snack
-      Snack.find_by(id: params[:id])
-    end
+    # def find_snack
+    #   Snack.find_by(id: params[:id])
+    # end
 
     # Only allow a list of trusted parameters through.
-    def snack_params
-      params.require(:snack).permit(:name, :category, :price, :rating)
-    end
+    # def snack_params
+    #   params.require(:snack).permit(:name, :category, :price, :rating)
+    # end
 end

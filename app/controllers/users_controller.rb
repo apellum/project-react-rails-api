@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def get_current_user
-    session["init"] = true
+    # session["init"] = true
     if logged_in
       render json: current_user, status: :ok
     else

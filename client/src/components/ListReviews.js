@@ -24,7 +24,7 @@ const ListReviews = ({review, currentUser, snack}) => {
             <li key={review.id}>
                 {currentUser ? <p>user: {review.user.username}</p> : null}
                 <p>{review.content}</p>
-                {currentUser.id === review.user.id ? <div><button onClick={deleteReview}>Delete Review</button><button onClick={handleEdit}>Edit Review</button></div>: null}
+                {currentUser ? currentUser.id === review.user.id ? <div><button onClick={deleteReview}>Delete Review</button><button onClick={handleEdit}>Edit Review</button></div>: null : null}
             </li>
         </div>
     )
